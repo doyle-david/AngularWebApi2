@@ -17,27 +17,27 @@
     </div>
      
     <h3>Person</h3>
-    <form name="personForm" ng-submit="submit(person)" class="" novalidate>
-        
+    <form name="personForm" ng-submit="save(person)" class="" novalidate>
+        <input type="hidden" ng-model="person.Id" name="id" id="id"/>
         <div class="form-group" ng-class="{'has-error': personForm.firstName.$invalid, 'has-success': personForm.firstName.$valid}">
             <label class="control-label" for="firstName">First Name:</label>
-            <input type="text" class="form-control" ng-model="person.firstName" name="firstName" placeholder="Enter first name" required />
+            <input type="text" class="form-control" ng-model="person.FirstName" name="firstName" placeholder="Enter first name" required />
             @*<span ng-show="personForm.firstName.$error.required">*Enter person name.</span>*@
         </div>
 
         <div class="form-group">
             <label class="control-label" for="lastName">Last Name:</label>
-            <input type="text" class="form-control" ng-model="person.lastName" id="lastName" />
+            <input type="text" class="form-control" ng-model="person.LastName" id="lastName" />
         </div>
         
         <div class="form-group" ng-class="{'has-error': personForm.email.$invalid, 'has-success': personForm.email.$valid}">
             <label class="control-label" for="email">Email:</label>
-            <input type="email" class="form-control" ng-model="person.email" id="email" name="email" required />
+            <input type="email" class="form-control" ng-model="person.Email" id="email" name="email" required />
         </div>
         
         <div class="form-group" ng-class="{'has-error': personForm.salary.$invalid, 'has-success': personForm.salary.$valid}">
             <label class="control-label" for="salary">salary:</label>
-            <input type="number" class="form-control" ng-model="person.salary" id="salary" name="salary" required />
+            <input type="number" class="form-control" ng-model="person.Salary" id="salary" name="salary" required />
         </div>
 
         <button type="submit" class="btn btn-success">
@@ -64,7 +64,7 @@
                 <td>{{person.DateOfBirth}}</td>
                 <td>{{person.Salary | currency}}</td>
                 <td>
-                    <button class="btn btn-success"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button>
+                    <button class="btn btn-success" ng-click="edit(person)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button>
                     <button class="btn btn-danger" ng-click="delete(person)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
                     @*<button class="btn btn-danger" data-toggle="popover" data-trigger="focus" title="Confirm delete?" data-content="Are you sure you want to delete?"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>*@
                 </td>

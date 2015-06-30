@@ -13,7 +13,7 @@
             return $http.post(resourceUrl, person).then(function(response) { return response.data; });
         },
         update: function(person) {
-            return $http.put(resourceUrl, person).then(function (response) { return response.data; });
+            return $http.put(resourceUrl + "/" + person.Id, person).then(function (response) { return response.data; });
         },
         delete: function (person) {
             return $http.delete(resourceUrl + "/" + person.Id).then(function (response) { return response.data; });

@@ -12,24 +12,48 @@ appControllers.controller('PersonCtrl', function ($scope, $http, $timeout, peopl
 
     $scope.getPeople();
 
-    $scope.submit = function (person) {
+    $scope.save = function (person) {
 
-        peopleService.add(person).then(
+        // Edit?
+        if (person.Id > 0) {
+            peopleService.update(person).then(
             // Success
-            function() {
+            function () {
                 $scope.success = true;
                 $scope.getPeople();
                 $scope.reset();
                 // Remove the bootstrap alert.
-                $timeout(function() { $scope.success = false; }, 2000);
+                $timeout(function () { $scope.success = false; }, 2000);
             },
             // Error
             function (error) {
                 alert(JSON.stringify(error));
                 $scope.error = true;
                 // Remove the bootstrap alert.
-                $timeout(function() { $scope.error = false; }, 5000);
+                $timeout(function () { $scope.error = false; }, 5000);
             });
+        }
+        // Insert
+        else {
+            peopleService.add(person).then(
+            // Success
+            function () {
+                $scope.success = true;
+                $scope.getPeople();
+                $scope.reset();
+                // Remove the bootstrap alert.
+                $timeout(function () { $scope.success = false; }, 2000);
+            },
+            // Error
+            function (error) {
+                alert(JSON.stringify(error));
+                $scope.error = true;
+                // Remove the bootstrap alert.
+                $timeout(function () { $scope.error = false; }, 5000);
+            });
+        }
+
+        
     };
 
     $scope.delete = function(person) {
@@ -47,6 +71,10 @@ appControllers.controller('PersonCtrl', function ($scope, $http, $timeout, peopl
                 });
         }
     };
+
+    $scope.edit = function (person) {
+        $scope.person = angular.copy(person);
+    }
 
     $scope.reset = function() {
         $scope.person = angular.copy($scope.emptyPerson);
