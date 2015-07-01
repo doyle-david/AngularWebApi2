@@ -57,6 +57,8 @@ namespace AngularWebApi.Api.Controllers
             if (!ModelState.IsValid) 
                 return BadRequest(ModelState);
 
+            model.DateCreated = DateTime.Now;
+
             using (var db = new DatabaseContext())
             {
                 db.People.Add(model);

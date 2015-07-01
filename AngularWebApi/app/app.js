@@ -1,5 +1,5 @@
 ﻿/* Application */
-var app = angular.module('crudApp', ['appControllers', 'appServices']);
+var app = angular.module('crudApp', ['ngRoute', 'appControllers', 'appServices']);
 
 /* Controllers */
 var appControllers = angular.module('appControllers', []);

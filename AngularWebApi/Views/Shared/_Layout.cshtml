@@ -8,6 +8,7 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/angular-route.min.js"></script>
     <script src="~/Scripts/showErrors.min.js"></script>
 </head>
 <body>
@@ -22,13 +23,18 @@
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav"></ul>
+                <ul class="nav navbar-nav">
+                    <li><a href="#/">Home</a></li>
+                    <li><a href="#/people">People</a></li>
+                    <li><a href="#/other">Other</a></li>
+                </ul>
             </div>
         </div>
     </div>
 
     <div class="container body-content">
         @RenderBody()
+        <ng-view />
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
@@ -37,6 +43,14 @@
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/app/app.js"></script>
+    <script src="~/app/routes.js"></script>
+
+    <script src="~/app/components/home/homeController.js"></script>
+    <script src="~/app/components/other/otherController.js"></script>
+    <script src="~/app/components/people/peopleController.js"></script>
+    <script src="~/app/components/people/peopleServices.js"></script>
 
     @RenderSection("scripts", required: false)
 </body>

@@ -22,5 +22,9 @@ namespace AngularWebApi.Data.Models
         public DateTime DateOfBirth { get; set; }
 
         public decimal Salary { get; set; }
+
+        [Column(TypeName = "datetime2")]
+        [DataType(DataType.DateTime)]
+        public DateTime DateCreated { get; set; }
     }
 }

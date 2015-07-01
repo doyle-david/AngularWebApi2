@@ -1,5 +1,5 @@
 ﻿
-appControllers.controller('PersonCtrl', function ($scope, $http, $timeout, peopleService) {
+appControllers.controller('peopleController', function ($, $scope, $http, $timeout, peopleService) {
 
     $scope.emptyPerson = {};
 
@@ -22,6 +22,7 @@ appControllers.controller('PersonCtrl', function ($scope, $http, $timeout, peopl
                 $scope.success = true;
                 $scope.getPeople();
                 $scope.reset();
+                $('#personModal').modal('hide');
                 // Remove the bootstrap alert.
                 $timeout(function () { $scope.success = false; }, 2000);
             },
@@ -41,6 +42,7 @@ appControllers.controller('PersonCtrl', function ($scope, $http, $timeout, peopl
                 $scope.success = true;
                 $scope.getPeople();
                 $scope.reset();
+                $('#personModal').modal('hide');
                 // Remove the bootstrap alert.
                 $timeout(function () { $scope.success = false; }, 2000);
             },
@@ -58,12 +60,15 @@ appControllers.controller('PersonCtrl', function ($scope, $http, $timeout, peopl
 
     $scope.delete = function(person) {
         if (confirm("Are you sure you want to delete " + person.FirstName + "?")) {
-            peopleService.delete(person).then(function() {
+            peopleService.delete(person).then(
+                // Success
+                function () {
                     $scope.success = true;
                     $scope.getPeople();
                     // Remove the bootstrap alert.
                     $timeout(function() { $scope.success = false; }, 2000);
                 },
+                // Error
                 function() {
                     $scope.error = true;
                     // Remove the bootstrap alert.
