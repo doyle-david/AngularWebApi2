@@ -33,12 +33,7 @@ appControllers.controller('peopleController', function ($, $scope, $timeout, peo
                 $timeout(function () { $scope.success = false; }, 2000);
             },
             // Error
-            function (error) {
-                alert(JSON.stringify(error));
-                $scope.error = true;
-                // Remove the bootstrap alert.
-                $timeout(function () { $scope.error = false; }, 5000);
-            });
+            handleError);
         }
         // Insert
         else {
@@ -53,15 +48,8 @@ appControllers.controller('peopleController', function ($, $scope, $timeout, peo
                 $timeout(function () { $scope.success = false; }, 2000);
             },
             // Error
-            function (error) {
-                alert(JSON.stringify(error));
-                $scope.error = true;
-                // Remove the bootstrap alert.
-                $timeout(function () { $scope.error = false; }, 5000);
-            });
+            handleError);
         }
-
-        
     };
 
     $scope.delete = function(person) {
@@ -75,11 +63,7 @@ appControllers.controller('peopleController', function ($, $scope, $timeout, peo
                     $timeout(function() { $scope.success = false; }, 2000);
                 },
                 // Error
-                function() {
-                    $scope.error = true;
-                    // Remove the bootstrap alert.
-                    $timeout(function() { $scope.error = false; }, 5000);
-                });
+                handleError);
         }
     };
 
@@ -90,4 +74,24 @@ appControllers.controller('peopleController', function ($, $scope, $timeout, peo
     $scope.reset = function() {
         $scope.person = angular.copy($scope.emptyPerson);
     }
+
+    function handleError (error) {
+        $scope.person.Errors = [];
+        if (!_.isUndefined(error.data.ExceptionMessage))
+            $scope.person.Errors.push(error.data.ExceptionMessage);
+
+        if (!_.isUndefined(error.data.ModelState)) {
+            var keys = Object.keys(error.data.ModelState);
+            _.each(keys, function(key) {
+                _.each(error.data.ModelState[key], function(message) {
+                    $scope.person.Errors.push(message);
+                });
+            });
+        }
+
+        $scope.error = true;
+        // Remove the bootstrap alert.
+        $timeout(function () { $scope.error = false; }, 5000);
+    }
+
 });

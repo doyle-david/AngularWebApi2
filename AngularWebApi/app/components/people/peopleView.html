@@ -60,7 +60,12 @@
                 <!--Bootstrap alerts-->
                 <div class="alert alert-danger alert-dismissible" ng-show="error" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <strong>Error!</strong> Something happened please review the form data and try again.
+                    <strong>Error!</strong>
+                    <div ng-repeat="pError in person.Errors">
+                        <ul>
+                            <li>{{pError}}</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
