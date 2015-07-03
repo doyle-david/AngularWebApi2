@@ -13,6 +13,7 @@ namespace AngularWebApi.Api.Controllers
         // GET: api/People
         public async Task<IHttpActionResult> Get()
         {
+            System.Threading.Thread.Sleep(2000);
             // TODO: Move code to a service...
             // TODO: Use DI...
             try

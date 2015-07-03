@@ -1,12 +1,14 @@
 ﻿
-appControllers.controller('peopleController', function ($, $scope, $http, $timeout, peopleService) {
+appControllers.controller('peopleController', function ($, $scope, $timeout, peopleService) {
 
     $scope.emptyPerson = {};
 
     // For Getting the people list.
     $scope.getPeople = function () {
+        $scope.loading = true;
         peopleService.getAll().then(function(data) {
             $scope.people = data;
+            $scope.loading = false;
         });
     }
 
