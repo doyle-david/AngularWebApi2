@@ -9,6 +9,9 @@
         getAll: function () {
             return $http.get(resourceUrl).then(function(response) { return response.data; });
         },
+        get: function (personId) {
+            return $http.get(resourceUrl + "/" + personId).then(function (response) { return response.data; });
+        },
         add: function(person) {
             return $http.post(resourceUrl, person).then(function(response) { return response.data; });
         },

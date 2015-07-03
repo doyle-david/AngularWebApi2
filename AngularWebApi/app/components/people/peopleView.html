@@ -27,7 +27,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="person in people">
-                <td>{{person.FirstName}}</td>
+                <td><a href="#/people/{{person.Id}}">{{person.FirstName}}</a></td>
                 <td>{{person.LastName}}</td>
                 <td>{{person.Email}}</td>
                 <td>{{person.DateOfBirth}}</td>
