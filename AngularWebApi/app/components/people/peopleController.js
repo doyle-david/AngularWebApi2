@@ -16,6 +16,10 @@ appControllers.controller('peopleController', function ($, $scope, $timeout, peo
 
     $scope.save = function (person) {
 
+        // Only submit if valid
+        if (!$scope.personForm.$valid)
+            return;
+
         // Edit?
         if (person.Id > 0) {
             peopleService.update(person).then(
