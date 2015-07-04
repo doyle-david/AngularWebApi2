@@ -50,6 +50,9 @@ appControllers.controller('peopleController', function ($, $scope, $timeout, peo
             // Error
             handleError);
         }
+
+        $scope.personForm.$setPristine();
+        $scope.personForm.$setUntouched();
     };
 
     $scope.delete = function(person) {
