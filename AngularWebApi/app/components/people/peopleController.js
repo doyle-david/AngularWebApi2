@@ -1,5 +1,5 @@
 ﻿
-appControllers.controller('peopleController', function ($, $scope, $http, $timeout, peopleService, errorService) {
+appControllers.controller('peopleController', function ($, $scope, $timeout, peopleService, errorService) {
 
     $scope.emptyPerson = {};
 

@@ -7,7 +7,6 @@
         <strong>Success!</strong> We have saved your data.
     </div>
 
-    <span>{{person.age()}}</span>
     <button class="btn btn-success" data-toggle="modal" data-target="#personModal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
     <table class="table table-striped">
         <thead>
@@ -23,7 +22,7 @@
         <tbody>
             <tr ng-repeat="person in people">
                 <td><a href="#/people/{{person.Id}}">{{person.FirstName}}</a></td>
-                <td>{{person.LastName}}</td>
+                <td ng-click="detail(person)">{{person.LastName}}</td>
                 <td>{{person.Email}}</td>
                 <td>{{person.DateOfBirth}}</td>
                 <td>{{person.Salary | currency}}</td>
@@ -40,12 +39,13 @@
         Loading...
     </div>
     <div>
-        something: {{selectedPerson.FirstName}}
-    </div>
-    <div style="text-align: center" ng-show="peopleLoading">
-        <img src="Content/loading.gif" />
-        <br/>
-        Loding data
+        <h3>Quick Detail</h3>
+        <p>
+            First Name: {{selectedPerson.FirstName}}
+        </p>
+        <p>
+            Last Name: {{selectedPerson.LastName}}
+        </p>
     </div>
 
     <div class="modal fade" id="personModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
@@ -75,7 +75,7 @@
 
                         <div class="form-group" ng-class="{'has-error': personForm.email.$invalid, 'has-success': personForm.email.$valid}">
                             <label class="control-label" for="email">Email:</label>
-                            <input type="email" class="form-control" ng-model="person.Email" id="email" name="email" required />
+                            <input type="email" class="form-control" ng-model="person.Email" id="email" name="email" ng-pattern="/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$/" required />
                         </div>
 
                         <div class="form-group" ng-class="{'has-error': personForm.salary.$invalid, 'has-success': personForm.salary.$valid}">
