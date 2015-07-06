@@ -1,18 +1,13 @@
 ﻿<div ng-cloak>
 
-    <h2>Base CRUD</h2>
+    <h2>People</h2>
     <!--Bootstrap alerts-->
     <div class="alert alert-success alert-dismissible" ng-show="success" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <strong>Success!</strong> We have saved your data.
     </div>
 
-    <div class="alert alert-danger alert-dismissible" ng-show="error" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>Error!</strong> Something happened please review the form data and try again.
-    </div>
-
-    <h3>Person</h3>
+    <span>{{person.age()}}</span>
     <button class="btn btn-success" data-toggle="modal" data-target="#personModal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
     <table class="table table-striped">
         <thead>
@@ -44,6 +39,14 @@
         <img src="Content/loading.gif" alt="Loading"/>
         Loading...
     </div>
+    <div>
+        something: {{selectedPerson.FirstName}}
+    </div>
+    <div style="text-align: center" ng-show="peopleLoading">
+        <img src="Content/loading.gif" />
+        <br/>
+        Loding data
+    </div>
 
     <div class="modal fade" id="personModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
         <div class="modal-dialog" role="document">
@@ -53,6 +56,10 @@
                     <h4 class="modal-title" id="exampleModalLabel">Person</h4>
                 </div>
                 <div class="modal-body">
+                    <div class="alert alert-danger alert-dismissible" ng-show="error" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Error!</strong> Something happened please review the form data and try again.
+                    </div>
                     <form name="personForm" ng-submit="save(person)" class="" novalidate>
                         <input type="hidden" ng-model="person.Id" name="id" id="id" />
                         <div class="form-group" ng-class="{'has-error': personForm.firstName.$invalid, 'has-success': personForm.firstName.$valid}">
@@ -78,15 +85,16 @@
                             <span class="text-danger" ng-show="personForm.salary.$error.number">*Field salary is numeric.</span>
                         </div>
 
-                        <button type="submit" class="btn btn-success">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Save
+                        <button type="submit" class="btn" ng-class="{'btn-success': personForm.$valid, 'btn-primary': personForm.$invalid}" ng-disabled="personForm.$invalid">
+                            Save
                         </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </form>
                 </div>
                 <!--<div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Send message</button>
-                </div>-->
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Send message</button>
+                    </div>-->
             </div>
         </div>
     </div>

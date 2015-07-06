@@ -1,5 +1,5 @@
 ﻿
-appControllers.controller('peopleController', function ($, $scope, $timeout, peopleService) {
+appControllers.controller('peopleController', function ($, $scope, $http, $timeout, peopleService, errorService) {
 
     $scope.emptyPerson = {};
 
@@ -13,6 +13,10 @@ appControllers.controller('peopleController', function ($, $scope, $timeout, peo
     }
 
     $scope.getPeople();
+
+    $scope.detail = function (person) {
+        $scope.selectedPerson = angular.copy(person);
+    }
 
     $scope.save = function (person) {
 
@@ -30,7 +34,7 @@ appControllers.controller('peopleController', function ($, $scope, $timeout, peo
             },
             // Error
             function (error) {
-                alert(JSON.stringify(error));
+                errorService.handleError(error);
                 $scope.error = true;
                 // Remove the bootstrap alert.
                 $timeout(function () { $scope.error = false; }, 5000);

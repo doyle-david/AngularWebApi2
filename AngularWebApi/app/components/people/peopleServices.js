@@ -22,5 +22,4 @@
             return $http.delete(resourceUrl + "/" + person.Id).then(function (response) { return response.data; });
         },
     }
-
 });

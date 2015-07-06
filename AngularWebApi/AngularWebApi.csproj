@@ -102,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\components\errorService.js" />
     <Content Include="app\components\home\homeController.js" />
     <Content Include="app\components\home\homeView.html" />
     <Content Include="app\components\other\otherController.js" />
@@ -114,6 +115,7 @@
     <Content Include="app\routes.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\dataTables.bootstrap.css" />
     <Content Include="Content\loading.gif" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -125,11 +127,16 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\datatables\dataTables.bootstrap.js" />
+    <Content Include="Scripts\datatables\jquery.dataTables.js" />
+    <Content Include="Scripts\datatables\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\showErrors.js" />
     <Content Include="Scripts\showErrors.min.js" />
+    <Content Include="Scripts\ui-bootstrap\ui-bootstrap-tpls-0.13.0.js" />
+    <Content Include="Scripts\ui-bootstrap\ui-bootstrap-tpls-0.13.0.min.js" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
@@ -163,7 +170,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
