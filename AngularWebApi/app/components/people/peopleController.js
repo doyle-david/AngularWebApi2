@@ -1,39 +1,35 @@
 ﻿
 appControllers.controller('peopleController', peopleController);
 
-peopleController.$inject = ['$', '$scope', '$timeout', 'peopleService'];
+peopleController.$inject = ['$', '$timeout', 'peopleService'];
 
-function peopleController($, $scope, $timeout, peopleService) {
-    $scope.emptyPerson = {};
+function peopleController($, $timeout, peopleService) {
+    var personViewModel = this;
+    personViewModel.emptyPerson = {};
 
     // For Getting the people list.
-    $scope.getPeople = function () {
-        $scope.loading = true;
+    personViewModel.getPeople = function () {
+        personViewModel.loading = true;
         peopleService.getAll().then(function (data) {
-            $scope.people = data;
-            $scope.loading = false;
+            personViewModel.people = data;
+            personViewModel.loading = false;
         });
     }
 
-    $scope.getPeople();
+    personViewModel.getPeople();
 
-    $scope.save = function (person) {
-
-        // Only submit if valid
-        if (!$scope.personForm.$valid)
-            return;
-
-        // Edit?
+    personViewModel.save = function (person) {
+        // Edit
         if (person.Id > 0) {
             peopleService.update(person).then(
             // Success
             function () {
-                $scope.success = true;
-                $scope.getPeople();
-                $scope.reset();
+                personViewModel.success = true;
+                personViewModel.getPeople();
+                personViewModel.reset();
                 $('#personModal').modal('hide');
                 // Remove the bootstrap alert.
-                $timeout(function () { $scope.success = false; }, 2000);
+                $timeout(function () { personViewModel.success = false; }, 2000);
             },
             // Error
             handleError);
@@ -43,61 +39,58 @@ function peopleController($, $scope, $timeout, peopleService) {
             peopleService.add(person).then(
             // Success
             function () {
-                $scope.success = true;
-                $scope.getPeople();
-                $scope.reset();
+                personViewModel.success = true;
+                personViewModel.getPeople();
+                personViewModel.reset();
                 $('#personModal').modal('hide');
                 // Remove the bootstrap alert.
-                $timeout(function () { $scope.success = false; }, 2000);
+                $timeout(function () { personViewModel.success = false; }, 2000);
             },
             // Error
             handleError);
         }
-
-        $scope.personForm.$setPristine();
-        $scope.personForm.$setUntouched();
     };
 
-    $scope.delete = function (person) {
+    personViewModel.delete = function (person) {
         if (confirm("Are you sure you want to delete " + person.FirstName + "?")) {
             peopleService.delete(person).then(
                 // Success
                 function () {
-                    $scope.success = true;
-                    $scope.getPeople();
+                    personViewModel.success = true;
+                    personViewModel.getPeople();
                     // Remove the bootstrap alert.
-                    $timeout(function () { $scope.success = false; }, 2000);
+                    $timeout(function () { personViewModel.success = false; }, 2000);
                 },
                 // Error
                 handleError);
         }
     };
 
-    $scope.edit = function (person) {
-        $scope.person = angular.copy(person);
+    personViewModel.edit = function (person) {
+        personViewModel.person = angular.copy(person);
     }
 
-    $scope.reset = function () {
-        $scope.person = angular.copy($scope.emptyPerson);
+    personViewModel.reset = function () {
+        personViewModel.person = angular.copy(personViewModel.emptyPerson);
     }
 
     function handleError(error) {
-        $scope.person.Errors = [];
+        personViewModel.person.Errors = [];
         if (!_.isUndefined(error.data.ExceptionMessage))
-            $scope.person.Errors.push(error.data.ExceptionMessage);
+            personViewModel.person.Errors.push(error.data.ExceptionMessage);
 
         if (!_.isUndefined(error.data.ModelState)) {
             var keys = Object.keys(error.data.ModelState);
             _.each(keys, function (key) {
                 _.each(error.data.ModelState[key], function (message) {
-                    $scope.person.Errors.push(message);
+                    personViewModel.person.Errors.push(message);
                 });
             });
         }
 
-        $scope.error = true;
+        personViewModel.error = true;
         // Remove the bootstrap alert.
-        $timeout(function () { $scope.error = false; }, 5000);
+        $timeout(function () { personViewModel.error = false; }, 5000);
     }
 }
 

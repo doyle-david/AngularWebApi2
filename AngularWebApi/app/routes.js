@@ -3,6 +3,7 @@
         .when('/people',
         {
             controller: 'peopleController',
+            controllerAs: 'personViewModel',
             templateUrl: 'app/components/people/peopleView.html'
         })
         .when('/people/:personId',

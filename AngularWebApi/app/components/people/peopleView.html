@@ -8,7 +8,7 @@
     }
 </style>
 <div ng-cloak>
-    <div class="alert alert-success alert-dismissible" ng-show="success" role="alert">
+    <div class="alert alert-success alert-dismissible" ng-show="personViewModel.success" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <strong>Success!</strong> We have saved your data.
     </div>
@@ -31,17 +31,17 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="person in people">
+            <tr ng-repeat="person in personViewModel.people">
                 <td><a href="#/people/{{person.Id}}">{{person.FirstName}}</a></td>
                 <td>{{person.LastName}}</td>
                 <td>{{person.Email}}</td>
                 <td>{{person.DateOfBirth}}</td>
                 <td>{{person.Salary | currency}}</td>
                 <td>
-                    <button class="btn btn-success" data-toggle="modal" data-target="#personModal" ng-click="edit(person)">
+                    <button class="btn btn-success" data-toggle="modal" data-target="#personModal" ng-click="personViewModel.edit(person)">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
                     </button>
-                    <button class="btn btn-danger" ng-click="delete(person)">
+                    <button class="btn btn-danger" ng-click="personViewModel.delete(person)">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
                     </button>
                     <!--<button class="btn btn-danger" data-toggle="popover" data-trigger="focus" title="Confirm delete?" data-content="Are you sure you want to delete?"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>-->
@@ -49,19 +49,18 @@
             </tr>
         </tbody>
     </table>
-    <div ng-show ="loading" class="text-center">
-        <img src="Content/loading.gif" alt="Loading"/>
+    <div ng-show="personViewModel.loading" class="text-center">
+        <img src="Content/loading.gif" alt="Loading" />
         Loading...
     </div>
-
     <div class="modal fade" id="personModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <!--Bootstrap alerts-->
-                <div class="alert alert-danger alert-dismissible" ng-show="error" role="alert">
+                <div class="alert alert-danger alert-dismissible" ng-show="personViewModel.error" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <strong>Error!</strong>
-                    <div ng-repeat="pError in person.Errors">
+                    <div ng-repeat="pError in personViewModel.person.Errors">
                         <ul>
                             <li>{{pError}}</li>
                         </ul>
@@ -74,31 +73,31 @@
                     <h4 class="modal-title" id="exampleModalLabel">Person</h4>
                 </div>
                 <div class="modal-body">
-                    <form name="personForm" ng-submit="save(person)" class="" novalidate>
-                        <input type="hidden" ng-model="person.Id" name="id" id="id" />
+                    <form name="personForm" ng-submit="personViewModel.save(personViewModel.person)" class="" novalidate>
+                        <input type="hidden" ng-model="personViewModel.person.Id" name="id" id="id" />
                         <div class="form-group">
                             <label class="control-label" for="firstName">First Name:</label>
-                            <input type="text" class="form-control" ng-model="person.FirstName" name="firstName" placeholder="Enter first name" required />
+                            <input type="text" class="form-control" ng-model="personViewModel.person.FirstName" name="firstName" placeholder="Enter first name" required />
                         </div>
 
                         <div class="form-group">
                             <label class="control-label" for="lastName">Last Name:</label>
-                            <input type="text" class="form-control" ng-model="person.LastName" id="lastName" placeholder="Enter last name" required />
+                            <input type="text" class="form-control" ng-model="personViewModel.person.LastName" id="lastName" placeholder="Enter last name" required />
                         </div>
 
                         <div class="form-group" ng-class="{'has-error': personForm.email.$invalid, 'has-success': personForm.email.$valid}">
                             <label class="control-label" for="email">Email:</label>
-                            <input type="email" class="form-control" ng-model="person.Email" id="email" name="email" required />
+                            <input type="email" class="form-control" ng-model="personViewModel.person.Email" id="email" name="email" required />
                         </div>
 
                         <div class="form-group" ng-class="{'has-error': personForm.salary.$invalid, 'has-success': personForm.salary.$valid}">
                             <label class="control-label" for="salary">salary:</label>
-                            <input type="number" class="form-control" ng-model="person.Salary" id="salary" name="salary" required />
+                            <input type="number" class="form-control" ng-model="personViewModel.person.Salary" id="salary" name="salary" required />
                             <span class="text-danger" ng-show="personForm.salary.$dirty && personForm.salary.$error.required">*Field salary is required.</span>
                             <span class="text-danger" ng-show="personForm.salary.$error.number">*Field salary is numeric.</span>
                         </div>
 
-                        <button type="submit" class="btn btn-success">
+                        <button type="submit" class="btn btn-success" ng-disabled="personForm.$invalid">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Save
                         </button>
                     </form>
