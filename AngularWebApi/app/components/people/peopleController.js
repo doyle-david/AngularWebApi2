@@ -1,12 +1,15 @@
 ﻿
-appControllers.controller('peopleController', function ($, $scope, $timeout, peopleService) {
+appControllers.controller('peopleController', peopleController);
 
+peopleController.$inject = ['$', '$scope', '$timeout', 'peopleService'];
+
+function peopleController($, $scope, $timeout, peopleService) {
     $scope.emptyPerson = {};
 
     // For Getting the people list.
     $scope.getPeople = function () {
         $scope.loading = true;
-        peopleService.getAll().then(function(data) {
+        peopleService.getAll().then(function (data) {
             $scope.people = data;
             $scope.loading = false;
         });
@@ -35,7 +38,7 @@ appControllers.controller('peopleController', function ($, $scope, $timeout, peo
             // Error
             handleError);
         }
-        // Insert
+            // Insert
         else {
             peopleService.add(person).then(
             // Success
@@ -55,7 +58,7 @@ appControllers.controller('peopleController', function ($, $scope, $timeout, peo
         $scope.personForm.$setUntouched();
     };
 
-    $scope.delete = function(person) {
+    $scope.delete = function (person) {
         if (confirm("Are you sure you want to delete " + person.FirstName + "?")) {
             peopleService.delete(person).then(
                 // Success
@@ -63,7 +66,7 @@ appControllers.controller('peopleController', function ($, $scope, $timeout, peo
                     $scope.success = true;
                     $scope.getPeople();
                     // Remove the bootstrap alert.
-                    $timeout(function() { $scope.success = false; }, 2000);
+                    $timeout(function () { $scope.success = false; }, 2000);
                 },
                 // Error
                 handleError);
@@ -74,19 +77,19 @@ appControllers.controller('peopleController', function ($, $scope, $timeout, peo
         $scope.person = angular.copy(person);
     }
 
-    $scope.reset = function() {
+    $scope.reset = function () {
         $scope.person = angular.copy($scope.emptyPerson);
     }
 
-    function handleError (error) {
+    function handleError(error) {
         $scope.person.Errors = [];
         if (!_.isUndefined(error.data.ExceptionMessage))
             $scope.person.Errors.push(error.data.ExceptionMessage);
 
         if (!_.isUndefined(error.data.ModelState)) {
             var keys = Object.keys(error.data.ModelState);
-            _.each(keys, function(key) {
-                _.each(error.data.ModelState[key], function(message) {
+            _.each(keys, function (key) {
+                _.each(error.data.ModelState[key], function (message) {
                     $scope.person.Errors.push(message);
                 });
             });
@@ -96,5 +99,5 @@ appControllers.controller('peopleController', function ($, $scope, $timeout, peo
         // Remove the bootstrap alert.
         $timeout(function () { $scope.error = false; }, 5000);
     }
+}
 
-});
