@@ -9,3 +9,4 @@ var appServices = angular.module('appServices', []);
 
 // For jQuery
 app.value('$', $);
+app.value('_', _);

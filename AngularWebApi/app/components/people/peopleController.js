@@ -1,9 +1,9 @@
 ﻿
 appControllers.controller('peopleController', peopleController);
 
-peopleController.$inject = ['$', '$timeout', 'peopleService'];
+peopleController.$inject = ['$', '_', '$timeout', 'peopleService'];
 
-function peopleController($, $timeout, peopleService) {
+function peopleController($, _, $timeout, peopleService) {
     var personViewModel = this;
     personViewModel.emptyPerson = {};
 
