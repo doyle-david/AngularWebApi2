@@ -112,6 +112,7 @@
     <Content Include="app\components\people\peopleController.js" />
     <Content Include="app\components\people\peopleServices.js" />
     <Content Include="app\components\people\personDetailView.html" />
+    <Content Include="app\directives.js" />
     <Content Include="app\routes.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />

@@ -65,7 +65,6 @@ appControllers.controller('peopleController', function ($, $scope, $timeout, peo
     };
 
     $scope.delete = function(person) {
-        if (confirm("Are you sure you want to delete " + person.FirstName + "?")) {
             peopleService.delete(person).then(
                 // Success
                 function () {
@@ -80,7 +79,6 @@ appControllers.controller('peopleController', function ($, $scope, $timeout, peo
                     // Remove the bootstrap alert.
                     $timeout(function() { $scope.error = false; }, 5000);
                 });
-        }
     };
 
     $scope.edit = function (person) {

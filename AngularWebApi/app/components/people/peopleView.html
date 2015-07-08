@@ -28,8 +28,7 @@
                 <td>{{person.Salary | currency}}</td>
                 <td>
                     <button class="btn btn-success" data-toggle="modal" data-target="#personModal" ng-click="edit(person)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button>
-                    <button class="btn btn-danger" ng-click="delete(person)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
-                    <!--<button class="btn btn-danger" data-toggle="popover" data-trigger="focus" title="Confirm delete?" data-content="Are you sure you want to delete?"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>-->
+                    <button class="btn btn-danger" ng-confirm-popover="delete(person)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
                 </td>
             </tr>
         </tbody>
