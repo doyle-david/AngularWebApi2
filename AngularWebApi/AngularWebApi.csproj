@@ -128,6 +128,8 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\datatables\angular-datatables.js" />
+    <Content Include="Scripts\datatables\angular-datatables.min.js" />
     <Content Include="Scripts\datatables\dataTables.bootstrap.js" />
     <Content Include="Scripts\datatables\jquery.dataTables.js" />
     <Content Include="Scripts\datatables\jquery.dataTables.min.js" />
