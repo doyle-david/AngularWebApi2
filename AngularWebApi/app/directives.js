@@ -1,4 +1,4 @@
-﻿appDirectives.directive('ngConfirmPopover', function ($document) {
+﻿appDirectives.directive('ngConfirmPopover', ['$document', function ($document) {
     return {
         restrict: 'A',
         scope: {
@@ -61,4 +61,4 @@
             });
         }
     };
-});
+}]);

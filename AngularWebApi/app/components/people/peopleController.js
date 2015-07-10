@@ -1,5 +1,5 @@
 ﻿
-appControllers.controller('peopleController', function ($, $scope, $timeout, peopleService, errorService) {
+appControllers.controller('peopleController', ['$', '$scope', '$timeout', 'peopleService', 'errorService', function ($, $scope, $timeout, peopleService, errorService) {
 
     $scope.emptyPerson = {};
 
@@ -88,4 +88,4 @@ appControllers.controller('peopleController', function ($, $scope, $timeout, peo
     $scope.reset = function() {
         $scope.person = angular.copy($scope.emptyPerson);
     }
-});
+}]);

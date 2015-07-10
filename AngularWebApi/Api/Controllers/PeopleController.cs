@@ -27,7 +27,7 @@ namespace AngularWebApi.Api.Controllers
             }
             catch (Exception ex)
             {
-                return InternalServerError();
+                return InternalServerError(ex);
             }
         }
 
@@ -48,7 +48,7 @@ namespace AngularWebApi.Api.Controllers
             }
             catch (Exception ex)
             {
-                return InternalServerError();
+                return InternalServerError(ex);
             }
         }
 
@@ -93,13 +93,13 @@ namespace AngularWebApi.Api.Controllers
 
                 return Ok();
             }
-            catch (System.Data.Entity.Infrastructure.DbUpdateConcurrencyException ce)
+            catch (System.Data.Entity.Infrastructure.DbUpdateConcurrencyException)
             {
                 return NotFound();
             }
             catch (Exception ex)
             {
-                return InternalServerError();
+                return InternalServerError(ex);
             }
         }
 

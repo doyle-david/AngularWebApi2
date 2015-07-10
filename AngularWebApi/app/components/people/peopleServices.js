@@ -1,4 +1,4 @@
-﻿appServices.service('peopleService', function($http) {
+﻿appServices.service('peopleService', ['$http', function($http) {
 
     // Note: hardcoded application name.
     // TODO: figure out a better way of passing in the routes.
@@ -22,4 +22,4 @@
             return $http.delete(resourceUrl + "/" + person.Id).then(function (response) { return response.data; });
         },
     }
-});
+}]);
