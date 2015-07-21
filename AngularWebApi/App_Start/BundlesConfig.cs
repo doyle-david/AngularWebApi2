@@ -25,12 +25,15 @@ namespace AngularWebApi.App_Start
                 "~/app/app.js",
                 "~/app/routes.js",
                 "~/app/directives.js",
+                "~/app/components/layout/layoutController.js",
                 "~/app/components/home/homeController.js",
-                "~/app/components/other/otherController.js",
+                "~/app/components/other/*.js",
                 "~/app/components/people/peopleController.js",
                 "~/app/components/people/personDetailController.js",
                 "~/app/components/people/peopleServices.js",
-                "~/app/components/errorService.js"));
+                "~/app/components/errorService.js")
+                .IncludeDirectory("~/app/components/shared/", "*.js",true)
+                );
     
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/Scripts/bootstrap.js"));

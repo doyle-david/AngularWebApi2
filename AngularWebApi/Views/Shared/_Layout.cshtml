@@ -36,7 +36,8 @@
         </div>
     </div>
 
-    <div class="container body-content">
+    <div class="container body-content" ng-controller="layoutController as layout">
+        <h1>{{layout.title}}</h1>
         @RenderBody()
         <ng-view />
         <hr />

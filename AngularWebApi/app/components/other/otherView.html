@@ -1,1 +1,30 @@
 ﻿<h2>Other</h2>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist" ng-init="active.tab='home'">
+    <li role="presentation" ng-class="{active: active.tab=='home'}">
+        <a ng-click="active.tab='home'" aria-controls="home" role="tab">Home</a>
+    </li>
+    <li role="presentation" ng-class="{active: active.tab=='profile'}">
+        <a ng-click="active.tab='profile'" aria-controls="profile" role="tab">Profile</a>
+    </li>
+    <li role="presentation" ng-class="{active: active.tab=='messages'}">
+        <a ng-click="active.tab='messages'" aria-controls="messages" role="tab">Messages</a>
+    </li>
+    <li role="presentation" ng-class="{active: active.tab=='settings'}">
+        <a ng-click="active.tab='settings'" aria-controls="settings" role="tab">Settings</a>
+    </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content" ng-switch="active.tab">
+    <div role="tabpanel" ng-switch-when="home">
+        <div ng-include="'app/components/other/otherTabOneView.html'" ng-controller="otherTabOneController as tabOne"></div>
+    </div>
+    <div role="tabpanel" ng-switch-when="profile">
+        <div ng-include="'app/components/other/otherTabTwoView.html'" ng-controller="otherTabTwoController as tabTwo"></div>
+    </div>
+    <div role="tabpanel" ng-switch-when="messages">
+        <div ng-include="'app/components/other/otherTabThreeView.html'" ng-controller="otherTabThreeController as tabThree"></div>
+    </div>
+    <div role="tabpanel" ng-switch-when="settings">Settings</div>
+</div>
