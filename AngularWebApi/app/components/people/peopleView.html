@@ -64,7 +64,7 @@
                         <strong>Error!</strong> Something happened please review the form data and try again.
                     </div>
                     <form name="personForm" ng-submit="save(person)" class="" novalidate>
-                        <input type="hidden" ng-model="person.Id" name="id" id="id" />
+                        <input type="hidden" ng-model="person.Id" name="id" id="id" value="{{person.Id}}" />
                         <div class="form-group" ng-class="{'has-error': personForm.firstName.$invalid, 'has-success': personForm.firstName.$valid}">
                             <label class="control-label" for="firstName">First Name:</label>
                             <input type="text" class="form-control" ng-model="person.FirstName" name="firstName" placeholder="Enter first name" required />

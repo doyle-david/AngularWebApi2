@@ -14,7 +14,7 @@ namespace AngularWebApi.Data
             
         }
 
-        public DbSet<Data.Models.Person> People { get; set; }
+        public virtual DbSet<Data.Models.Person> People { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
